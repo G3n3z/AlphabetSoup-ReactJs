@@ -1,0 +1,34 @@
+
+.letter{
+    text-align: center;
+    background-color:rgb(237, 221, 168);
+    width:100%;
+    height:30px;
+    border:2px solid rgb(200, 193, 193);
+    text-align: center;
+    justify-content: center;
+    font-family: serif;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display:flex;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#char{
+    text-align: center;
+    cursor: pointer;
+    width:60%
+}
+.selected {
+    background-color: white;
+}
+.final {
+    background-color: rgb(83, 29, 29);
+}

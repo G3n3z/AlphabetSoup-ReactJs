@@ -1,0 +1,12 @@
+export {default as ButtonLevel} from "./buttonLevel/button-level.component"
+export {default as ControlPanel} from "./control-panel/control-panel.component"
+export {default as ButtonStart} from "./buttonStart/button-start.component"
+export {default as GamePanel} from "./game-panel/gamePanel.component"
+export {default as GameTable} from "./gameTable/gameTable.component"
+export {default as WordsPanel} from "./wordsPanel/words-panel.component"
+export {default as Letter} from "./letter/letter.component"
+export {default as TimeLabel} from "./timeLabel/timeLabel.component"
+export {default as Word} from "./word/word.component"
+export {default as InputWord} from "./inputWord/inputWord.component"
+export {default as Modal} from "./modal/modal.component"
+export {default as PontuacaoLabel} from './labelPontuacao/pontuacao-label.component'

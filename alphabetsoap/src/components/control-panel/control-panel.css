@@ -1,0 +1,157 @@
+
+#panel-control {
+    background-color: #1f959b;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    font-size: smaller;
+    color: grey;
+    width: 100%;
+    margin: 0px 0px 30px 0px;
+    border: 3px solid var(--globalColor);
+  }
+  
+  #panel-control .form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  #panel-control .form,
+  #panel-control .form-metadata {
+    width: 100%;
+    padding: 10px 20px;
+  }
+  
+
+  
+  #panel-control .left {
+    justify-self: left;
+  }
+  
+  #panel-control .right {
+    justify-self: end;
+  }
+  
+  #panel-control .form-group {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    justify-self: left;
+  }
+  
+  #panel-control .form-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    list-style-type: none;
+  }
+  
+  #panel-control #message {
+    color: var(--messageColor);
+    font-weight: bolder;
+  }
+  
+  #game {
+    width: 100%;
+    min-width: 200px;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    display: grid;
+    justify-content: center;
+    perspective: 1000px;
+    user-select: none;
+  }
+  
+
+  button:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border: 2px solid grey;
+  }
+  
+
+  
+  .hide {
+    display: none;
+  }
+
+
+.Titulo{
+    text-align: center;
+    color: black;
+}  
+
+/* CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  width: 100%;
+  min-width: 200px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .30s,transform .30s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 16px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+#principiante{
+    background-color: rgb(142, 182, 93);
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#347c2c 0 -3px 0 inset;
+}
+#medio{
+    background-color: rgb(155, 147, 245);
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,rgb(101, 49, 159) 0 -3px 0 inset;
+}
+#avancado{
+    background-color: rgb(216, 45, 45);
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#9c0101 0 -3px 0 inset;
+
+}
+
+.form .active {
+   transform: translateY(+5px); 
+   transition: box-shadow .30s,transform .30s;
+   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#9c0101 0 -0px 0 inset;
+}
+.disabled{
+  cursor: inherit;
+  background-color: rgb(137, 137, 137) !important;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#000000 0 -3px 0 inset !important;
+  width: 500px;
+}
