@@ -69,6 +69,15 @@ function GameTable(props){
     const letterSelected = [];
     const [lettersSelected, setLettersSelected] = useState([]);
     let orientacao;
+
+    /**
+     * Funcao que recebe valores de um Letter quando o mesmo é pressionado com o rato e altera o estado do botao pressionado para true
+     * @param {*} char character
+     * @param {*} lin linha
+     * @param {*} col coluna
+     * @param {*} handleSelect handle para funcao que altera altera o estado
+     * @returns 
+     */
     const handleMouseDown = (char, lin, col, handleSelect) => {
         //console.log(char);
         if(ganhou === true || time.current === 0){
@@ -79,6 +88,12 @@ function GameTable(props){
         handleSelect(true);
         //console.log(letterSelected);
     }
+
+    /**
+     * Funcao que verifica se a palvavra recolhida é alguma das pretendidas.
+     * Verifica a palavra de frente para tras e de tras para a frente
+     * @returns retorna a palavra pela ordem correta ou uma string vazia caso não tenha correspondecia com nenhuma palavra
+     */
     const checkWord = () => {
         let word1="", word2="";
         for(let l of letterSelected) {
@@ -96,6 +111,12 @@ function GameTable(props){
         }
         return "";
     }
+
+    /**
+     * Funcao que do qual é avisada que houve um mouseUp num Letter, logo tem de se verificar a palavra selecionada
+     * Altera o estado do mouseDown para false
+     * @returns 
+     */
     const handleMouseUp = () => {
         console.log("mouseUp");
         if(ganhou === true || time.current === 0){
@@ -118,6 +139,10 @@ function GameTable(props){
         setMouseDown(false);
     }
 
+    /**
+     * É executada quando existe um mouseExit no gameTable para se o utilizador tiver a selecionar uma palavra
+     * e sair com o rato do tabuleiro, resetar o estado das Letter pelas quais passou
+     */
     const mouseExit = () => {
         for(let l of letterSelected) {
             const handle = l.getSelect();
@@ -126,6 +151,11 @@ function GameTable(props){
         setMouseDown(false);
     }
 
+    /**
+     * Funcao que verifica se já existe aquele Letter no array de letras selecionadas
+     * @param {Cell} aux Class que contem informacoes sobre um Letter
+     * @returns true se nao existir
+     */
     const includes = (aux) => {
         for (let i = 0; i < letterSelected.length; i++) {
 
@@ -135,6 +165,12 @@ function GameTable(props){
         }
         return true;
     }
+
+    /**
+     * Funcao que verifica se a orientacao da Nova Letter corresponde à correta
+     * @param {Cell} aux nova Letter selecionada 
+     * @returns true se a orientacao calculada corresponder À anterior
+     */
     const isCorrectOrientation = (aux) => {
         const o = orientacao;
         if(o === findOrientation(aux, letterSelected[letterSelected.length - 1])){
@@ -143,6 +179,14 @@ function GameTable(props){
         return false;
         
     }
+
+    /**
+     * Funcao que invocada por ter ocorrido um mouseOver em uma Letter, do qual recebe informação sobre a mesma
+     * @param {*} char caracter
+     * @param {*} lin linha
+     * @param {*} col coluna
+     * @param {*} handleSelect handle para funcao que altera o estado da Letter
+     */
     const handleMouseHover = (char, lin, col, handleSelect) => {
         const aux = new Cell(lin, col, char, handleSelect);
         let o;

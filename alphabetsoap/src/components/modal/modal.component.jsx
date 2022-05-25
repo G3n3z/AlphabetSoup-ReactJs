@@ -4,9 +4,17 @@ function Modal(props){
 
     const {isOpen, ganhou, pontuacao, tempo, handleCloseModal, level, handleNextGame, handleNewGame} = props;
     const modalClass = isOpen ? 'modal-open' : '';
+    /**
+     * Funcao a ser executada quando se pretende jogar o proximo nivel
+     * Chama uma funcao do componente pai
+     */
     const nextLevel = () => {
         handleNextGame();
     }
+    /**
+     * Funcao a ser executada quando se pretende jogar um novo Jogo
+     * Chama uma funcao do componente pai
+     */
     const newGame = () => {
         handleNewGame();
     }

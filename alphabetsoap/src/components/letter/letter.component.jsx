@@ -7,6 +7,12 @@ function Letter(props) {
     const [mouseOverClass, setMouseOverClass] = useState(false);
     const {line, col, mouseDown,onMouseDown, onMouseHover, onMouseUp, indexColor, estado} = props;
 
+    /**
+     * Detecta quando existe um mouseOver e caso o estado de mouseClick esteja pressionado envia para o componente pai
+     * a sua letra, linha, coluna, e um handle para modificar o seu estado
+     * @param {*} event 
+     * @returns 
+     */
     const isMouseHouver = (event) =>{
         if(selectedState === "final" ){
             return;
@@ -16,6 +22,14 @@ function Letter(props) {
         }
         
     }
+
+    /**
+     * É executada quando é pressionado o botao do rato e envia para o componente pai 
+     * a sua letra, linha, coluna, e um handle para modificar o seu estado
+     * Ira corresponder a primeira letra de uma palavra
+     * @param {*} event 
+     * @returns 
+     */
     const isMouseDown = (event) =>{
         if(selectedState === "final" ){
             return;
@@ -24,6 +38,11 @@ function Letter(props) {
         
     }
     
+
+    /**
+     * 
+     * @param {bool or string} bool consoante o valor enviado, altera o estado interno do componente para mudar o seu estilo 
+     */
     const handleSetSelected = (bool) => {
 
         if(bool === true){
@@ -39,18 +58,30 @@ function Letter(props) {
             setSelectedState("");
         }
     }
+
+    /** 
+     * Sempre que o nivel é alterado, repoe os seus estados
+     */
     useEffect(() => {
         setSelectedState("");
         setBackgroundColor(undefined);
         setMouseOverClass("");
     }, [props.level])
     
+    /**
+     * Quando termina o jogo, modifica um dos estados para nao ficar um letra com o estilo de mouseOver
+     */
     useEffect(() => {
         if(estado === 2){
             setMouseOverClass("");
         }
     }, [estado])
 
+
+    /**
+     * Funcao que deteta o mouseOver e atribui um estilo
+     * @returns 
+     */
     const styleMouseOver = () => {
         if(mouseDown)
             return;
@@ -62,6 +93,10 @@ function Letter(props) {
         }
         setMouseOverClass("hover");
     }
+    /**
+     * Funcao que deteta o mouseLeave e remove o estilo
+     * @returns 
+     */
     const styleMouseLeave = () => {
 
         if(selectedState === "final" ){

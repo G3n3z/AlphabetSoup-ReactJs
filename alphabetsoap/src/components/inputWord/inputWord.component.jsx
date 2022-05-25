@@ -1,8 +1,13 @@
-import {useState} from 'react'
+
 
 function InputWord (props){
     const {word} = props;
 
+    /**
+     * Sempre que é clicado uma tecla, verifica se é a tecla enter e envia para o componente pai
+     * o valor do seu input. Tambem reseta esse mesmo valor
+     * @param {*} e evento
+     */
     function addWord(e){
         
         if(e.key ==="Enter"){

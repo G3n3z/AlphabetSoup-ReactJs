@@ -32,8 +32,13 @@ function ControlPanel(props) {
             onLevel(id);
 
     }
+
+    /**
+     * Funcao que faz começar ou terminar o jogo. Esta funcao e chamada pelo ButtonStart
+     * Inicia o jogo ou termina consoante o estado atual do jogo
+     */
     const play = () => {
-        console.log("lets Play")
+        //console.log("lets Play")
         if(level !== 0 && estado === 0)
         { 
            onStartGame();

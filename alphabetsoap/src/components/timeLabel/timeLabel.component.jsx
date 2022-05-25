@@ -7,7 +7,9 @@ function TimeLabel(props) {
 
   //time.current = timeOut;
   
-  
+  /**
+   * Sempre que o nivel, estado ou tempo for atualizado, atualiza a referencia para o tempo consoante o nivel
+   */
   useEffect(() => {
     if(estado === 2)
       return;
@@ -21,6 +23,9 @@ function TimeLabel(props) {
     setTimeout(time.current);
   }, [level, estado, time])
 
+  /**
+   * Sempre que existir alteracao no estado, referencia para o contador ou nivel, atualiza o tempo
+   */
   useEffect(() => {
     if(estado !== 1) 
     {  
@@ -33,6 +38,10 @@ function TimeLabel(props) {
     return () => clearInterval(intervalRef);
   }, [estado, intervalRef, level]);
   
+
+  /** 
+   * Quando o tempo é alterado tem de se verificar se chegou ao 0 para parar o contador e avisar o App o jogador perdeu
+   */
   useEffect(() => {
     time.current = timeOut;
     if (timeOut <= 0 && estado === 1) {

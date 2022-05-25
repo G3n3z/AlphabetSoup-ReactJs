@@ -30,13 +30,24 @@ class Word{
   }
 }
 
+/**
+ * Funcao que preenche o tab com a palavra no indice i
+ * @param {*} tab array de caracteres 
+ * @param {*} words palavras a serem inseridas no tab
+ * @param {*} i indice da palavra a ser inserida
+ * @param {*} incX incremento no eixo dos x
+ * @param {*} incY incremento no eixo dos y
+ * @param {*} numLines num de linhas do tab
+ * @param {*} numCol numero de colunas do col
+ * @returns 
+ */
 function colocaWord(tab, words, i, incX, incY, numLines, numCol) {
   let isCorrect = false;
   let posLine, posCol, initX, initY;
   let j = 0,
     tries = 0;
   while (!isCorrect) {
-    if (tries === 1000) {
+    if (tries === 10000) {
       return;
     }
     tries++;
@@ -69,41 +80,70 @@ function colocaWord(tab, words, i, incX, incY, numLines, numCol) {
     initX += incX;
     initY += incY;
   }
+  return j === words[i].length;
 }
 
+function remove(words, i) {
+  let w =[];
+  for (let j = 0; j < words[i].length; j++){
+    if(j === i){
+      continue;
+    }
+    w.push(words[j]);
+  }
+  words = w;
+}
+
+/**
+ * funcao que calcula uma orientacao aleatoria e coloca as palavras dentro do tab
+ * // 0 - horizontal E->D, 1 - horizontal E<-D , 2 - vertical C->B, 3 - vertical B->C,
+  // 4 - Diagonal C->B E->D, 5 -> Diagonal C->B D->E, 6 -> Diagonal B->C E->D, 7 -> Diagonal B->C D->E
+ * @param {*} tab array de caracteres 
+ * @param {*} words palavras a serem inseridas no tab
+ * @param {*} nLin numero de linhas do tab
+ * @param {*} nCol numero de colunas do tab
+ */
 function fillWords(tab, words, nLin, nCol) {
   let orientation; // 0 - horizontal E->D, 1 - horizontal E<-D , 2 - vertical C->B, 3 - vertical B->C,
   // 4 - Diagonal C->B E->D, 5 -> Diagonal C->B D->E, 6 -> Diagonal B->C E->D, 7 -> Diagonal B->C D->E
+  let result, indices = [];
   for (let i = 0; i < words.length; i++) {
     orientation = Math.floor(Math.random() * 7);
     switch (orientation) {
       case 0:
-        colocaWord(tab, words, i, 0, 1, nLin, nCol);
+        result = colocaWord(tab, words, i, 0, 1, nLin, nCol);
         break;
       case 1:
-        colocaWord(tab, words, i, 0, -1, nLin, nCol);
+        result = colocaWord(tab, words, i, 0, -1, nLin, nCol);
         break;
       case 2:
-        colocaWord(tab, words, i, 1, 0, nLin, nCol);
+        result = colocaWord(tab, words, i, 1, 0, nLin, nCol);
         break;
       case 3:
-        colocaWord(tab, words, i, -1, 0, nLin, nCol);
+        result = colocaWord(tab, words, i, -1, 0, nLin, nCol);
         break;
       case 4:
-        colocaWord(tab, words, i, 1, 1, nLin, nCol);
+        result = colocaWord(tab, words, i, 1, 1, nLin, nCol);
         break;
       case 5:
-        colocaWord(tab, words, i, 1, -1, nLin, nCol);
+        result = colocaWord(tab, words, i, 1, -1, nLin, nCol);
         break;
       case 6:
-        colocaWord(tab, words, i, -1, 1, nLin, nCol);
+        result = colocaWord(tab, words, i, -1, 1, nLin, nCol);
         break;
       case 7:
-        colocaWord(tab, words, i, -1, -1, nLin, nCol);
+        result = colocaWord(tab, words, i, -1, -1, nLin, nCol);
         break;
       default:
         break;
     }
+    if(result === false) {
+      indices.push(i);
+    }
+    
+  }
+  for(let i of indices) {
+    remove(words, i);
   }
 }
 
@@ -111,7 +151,7 @@ function fillWords(tab, words, nLin, nCol) {
 
 
 
-function GamePanel(props, ref) {
+function GamePanel(props) {
 
   const [wordss, setWords] = useState([]);
   const [nLines, setNlines] = useState(10);
@@ -130,8 +170,14 @@ function GamePanel(props, ref) {
   //const [ganhou, setGanhou] = useState(false);
   const indexColor = useRef(0);
 
+  /**
+   * Funcao que altera o estado interno de uma Word do WordsPanel se receber um string com o mesmo valor
+   * verifica tambem se a quantidade de palavras descobertas é igual ao numero palavras iniciais.
+   * Caso isso aconteça assinala a vitoria 
+   * @param {*} w palavra a ser assinalada no WordsPanel
+   */
   function putWordSelect(w){
-    console.log("putWordSelect");
+    //console.log("putWordSelect");
     for(let i=0; i<wordsChildren.length; i++){
       if(w === wordsChildren[i].word){
         wordsChildren[i].handleState(true);
@@ -145,10 +191,14 @@ function GamePanel(props, ref) {
     handleSetPont(pontuacao.current);
     console.log(rightWords + " - " + wordsChildren.length)
     if(rightWords === wordsChildren.length){
-        handleWin();
+        handleWin(); //Assinala que ganhou
     }
   }
-
+   /**
+    * Verificacao se a palavra completada já existe no array de palavras completadas
+    * @param {string} aux palavra completada
+    * @returns 
+    */
   function includes(aux){
     for(let w of wordsChildren){
       if(w.word === aux.word){
@@ -157,6 +207,12 @@ function GamePanel(props, ref) {
     }
     return false;
   }
+
+  /**
+   * Funcao para o gamePanel armazenar o handle da word, para poder mudar os seu estado mais tarde
+   * @param {*} handleWordState handle para uma funcao que altera o estado interno da Word
+   * @param {string} word palavra a ser inserida
+   */
   function getHandleWordPanel( handleWordState, word){
     const aux = new Word(word, handleWordState);
     if(!includes(aux))
@@ -168,18 +224,27 @@ function GamePanel(props, ref) {
     return characters.charAt(Math.floor(Math.random() * characters.length));
   };
 
+  /**
+   * Funcao que cria o array bidimensional e preenche com previamente com espacos em branco para introduzir
+   * as palavras a serem descobertas
+   */
   function generateTable() {
     tab = Array(nLin)
       .fill(" ")
       .map((row) => new Array(nCol).fill(" "));
+    
     fillWords(tab, words, nLin, nCol);
+
     for (let i = 0; i < nLin; i++) {
       for (let j = 0; j < nCol; j++) {
-        if (tab[i][j] === " ") tab[i][j] = randomLetters();
+        if (tab[i][j] === " ") tab[i][j] = randomLetters(); //colocacao das letras aleatorias
       }
     }
   }
 
+  /**
+   * Funcao que obtem as palavras aleatoriamente do array constante 
+   */
   function getWords() {
     words = [];
     let word, random;
@@ -200,6 +265,12 @@ function GamePanel(props, ref) {
       words.push(word);
     }
   }
+
+  /**
+   * Funcao que define a partir do nivel o tamanho do array, a grid e o numero de palavras a serem descobertas.
+   * Invoca as funcoes de preenchimento do array
+   * @returns 
+   */
   const preparaTabuleiro = () => {
     if (level === 1) {
       nLin = nCol = 10;
@@ -243,7 +314,9 @@ function GamePanel(props, ref) {
   //   setOpenModal(false);
   // }
 
-
+  /**
+   * Invoca a funcao de preparacao do tabuleiro e armazena os valores em estados.
+   */
   useEffect(() => {
     if(estado !== 1)
     return

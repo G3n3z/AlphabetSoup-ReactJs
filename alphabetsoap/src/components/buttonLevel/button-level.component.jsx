@@ -2,6 +2,10 @@
 function ButtonLevel(props) {
 
     const {level, number} = props;
+    /**
+     * Funcao executada quando existe um click e que caso o estado do jogo esteja a 0,
+     *  envia o seu identificador para alterar o nivel
+     */
     const clicado = () =>{
         if(props.estado === 0)
             props.handlePress(number);      

@@ -19,7 +19,11 @@ function App() {
   let handleUpdatePont;
 
 
-
+  /**
+   * Funcao que comeca o jogo 
+   * @param {bool} nextGame Se for true mantem a pontuacao
+   * 
+   */ 
   const handleStartGame = (nextGame) => {
     if(nextGame !== true || nextGame === undefined) {
       pontuacao.current = 0;
@@ -29,6 +33,10 @@ function App() {
     setEstado(1);
     
   };
+
+  /**
+   * Funçao para voltar o jogo ao estado inicial
+   */
   const handleStopGame = () => {
     
     if (estado !== 0) {
@@ -39,17 +47,29 @@ function App() {
     }
   };
 
+  /**
+   * Função chamada pelo TimeLabel para sinalizar que acabou o tempo
+   */
   const loseGameForTime = () => {
     setOpenModal(true);
     setGanhou(false);
     setEstado(2);
   };
 
+  /**
+   * Funcao que altera o nivel
+   * @param {int} nivel valor para o qual o nivel vai ser alterado
+   */
   const handleSetLevel = (nivel) => {
     setLevel(nivel);
   };
   
 
+  /**
+   * Funcao que recebe uma palavra introduzida pelo jogador e armazena num estado para depois serem usadas
+   * @param {string} word palavra introduzida no InputWord para ser armazenada
+   * @returns 
+   */
   const handleAddWord = (word) => {
     console.log(word);
     let words = [];
@@ -94,21 +114,34 @@ function App() {
   // })();
 
   
-
+ /**
+  * Funcao que armazena o handle para a funcao que faz update à pontuacao do PontuacaoLabel
+  * @param {handle} handle handle para funcao de update 
+  */
   const receiveUpdatePont = (handle) => {
     handleUpdatePont = handle;
   };
 
-
-  const setUpdatePont = (p) => {
+  /**
+   * 
+   * Funcao chamada pelo gamePanel quando é necessario atualizar a pontuacao
+   */
+  const setUpdatePont = () => {
     handleUpdatePont();
   };
 
+
+  /**
+   * Funcao para fechar o modal. Usada no botao de fecho do modal
+   */
   const handleCloseModal =  () => {
     setOpenModal(false);
     setGanhou(false);
   }
 
+  /**
+   * Funcao para jogar o proximo nivel
+   */
   const nextGame = () =>{
     setOpenModal(false);
     setLevel(level + 1);
@@ -116,13 +149,18 @@ function App() {
     setEstado(1);
     
   }
-
+   /**
+    * Funcao para ir para um novo jogo. Coloca o estado a 0
+    */
   const newGame = () => {
     setOpenModal(false);
     setGanhou(false);
     setEstado(0);
   }
 
+  /**
+   * Funcao chamada pelo GamePanel para sinalizar que o jogador passou o nivel
+   */
   const win =() => {
     clearInterval(intervalRef.current);
     setGanhou(true);
