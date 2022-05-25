@@ -10,7 +10,7 @@ function ButtonStart(props) {
         
     }
     return(
-        <div className={`buttonStart ${clicked}`} onClick = {click}>{estado !== 1 ? "Iniciar Jogo" : "Terminar Jogo"}</div>
+        <div className={`buttonStart ${clicked}`} onClick = {click}>{estado === 0 ? "Iniciar Jogo" : "Terminar Jogo"}</div>
     );
 }
 

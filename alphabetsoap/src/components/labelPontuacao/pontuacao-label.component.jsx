@@ -16,10 +16,10 @@ function PontuacaoLabel(props){
 
     return (
         <>
-            {estado === 1 ? 
+            {estado !== 0 ? 
                 (<div className="pontuacao-container">
                     <div>Pontuacao:  </div>
-                    <div>{pontuacao.current}</div>
+                    <div>{pont}</div>
                 </div>):
                 (<div></div>)
             }

@@ -1,42 +1,59 @@
 import "./timeLabel.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 function TimeLabel(props) {
-  const timerIdRef = useRef(0);
-  const [timeOut, setTimeout] = useState(10);
-  const [active, setActive] = useState(true);
-  const {time} = props;
-
-  time.current = timeOut;
   
-  const startTimer = () => {
-    console.log(time.current);
-    console.log(timeOut);
-    setTimeout(timeOut - 1);
-    // console.log(timeOut);
-    // if (timerIdRef.current) {
-    //   return;
-    // }
+  const [timeOut, setTimeout] = useState(10);
+  const {time, estado, level, loseGameForTime, intervalRef} = props;
 
-    // console.log(timeOut);
-    // timerIdRef.current = setInterval(() => {
-      
-    //     setTimeout(timeOut - 1);
-      
-    // }, 1000);
-  };
+  //time.current = timeOut;
+  
+  
+  useEffect(() => {
+    if(estado === 2)
+      return;
+    if(level ===  1 ){
+      time.current = 30;
+    }else if(level === 2){
+      time.current = 60;
+    }else if(level === 3){
+      time.current = 90;
+    }
+    setTimeout(time.current);
+  }, [level, estado, time])
 
   useEffect(() => {
-    //console.log(timeOut);
-    //clearInterval(timerIdRef.current);
-  }, []);
-
+    if(estado !== 1) 
+    {  
+      return;
+    }
+    intervalRef.current = setInterval(() => {
+      setTimeout((t) => t - 1);
+      
+    }, 1000);
+    return () => clearInterval(intervalRef);
+  }, [estado, intervalRef, level]);
+  
+  useEffect(() => {
+    time.current = timeOut;
+    if (timeOut <= 0 && estado === 1) {
+      clearInterval(intervalRef.current);
+      loseGameForTime();
+      //chamar perdeu
+    }
+  }, [timeOut, loseGameForTime, intervalRef, time, estado]);
   return (
-    <div className="timer">
-      <div className="lTime">Tempo: </div>
-      <div className="time" onClick={startTimer}>
-        {timeOut}
-      </div>
-    </div>
+    <>
+      {estado !== 0 ? 
+        (<div className="timer">
+            <div className="lTime">Tempo: </div>
+            <div className="time" >
+              {timeOut}
+            </div>
+         </div>)
+          : 
+          (<div></div>) }
+      
+    </>
   );
 }
 export default TimeLabel;

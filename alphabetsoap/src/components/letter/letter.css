@@ -1,16 +1,17 @@
 
 .letter{
     text-align: center;
-    background-color:rgb(237, 221, 168);
+    background-color:white;
     width:100%;
     height:30px;
-    border:2px solid rgb(200, 193, 193);
+    border:2px solid rgb(241,235,235);
     text-align: center;
     justify-content: center;
     font-family: serif;
     font-size: 16px;
     cursor: pointer;
     text-align: center;
+    color:grey;
     display:flex;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -21,14 +22,22 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
+ .hover{
+    background-color:rgb(123, 119, 119);
+    color:white;
+    
+} 
 #char{
     text-align: center;
     cursor: pointer;
     width:60%
 }
 .selected {
-    background-color: white;
+    background-color: rgb(123, 119, 119);
+    color:white;
+
 }
 .final {
     background-color: rgb(83, 29, 29);
+    color:grey;
 }

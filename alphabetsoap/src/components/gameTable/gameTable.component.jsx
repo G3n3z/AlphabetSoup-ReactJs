@@ -61,7 +61,7 @@ function findOrientation(letterSelected1, letterSelected0){
 }
 
 function GameTable(props){
-    const {lines, columns, grid, tabela, words, handleWordSelect} = props;
+    const {grid, tabela, words, handleWordSelect, level, estado, ganhou, time, indexColor} = props;
     //const {lines, columns, grid} = props;
     const [mouseDown, setMouseDown] = useState(false);
 
@@ -71,6 +71,9 @@ function GameTable(props){
     let orientacao;
     const handleMouseDown = (char, lin, col, handleSelect) => {
         //console.log(char);
+        if(ganhou === true || time.current === 0){
+            return;
+        }
         setMouseDown(true);
         setLettersSelected([lin, col, char, handleSelect]);
         handleSelect(true);
@@ -94,6 +97,10 @@ function GameTable(props){
         return "";
     }
     const handleMouseUp = () => {
+        console.log("mouseUp");
+        if(ganhou === true || time.current === 0){
+            return;
+        }
         let result;
         let word = checkWord();
         if(word !== ""){
@@ -101,6 +108,8 @@ function GameTable(props){
             handleWordSelect(word);
         }else{
             result = false;
+            lettersSelected[3]("");
+            setLettersSelected([]);
         }
         for(let l of letterSelected) {
             const handle = l.getSelect();
@@ -108,6 +117,15 @@ function GameTable(props){
         }
         setMouseDown(false);
     }
+
+    const mouseExit = () => {
+        for(let l of letterSelected) {
+            const handle = l.getSelect();
+            handle(""); 
+        }
+        setMouseDown(false);
+    }
+
     const includes = (aux) => {
         for (let i = 0; i < letterSelected.length; i++) {
 
@@ -162,21 +180,25 @@ function GameTable(props){
         //console.log(letterSelected);
     }
 
-
+    
 
     return (
-        <div className="table">
-            <div className = {grid}>
+        <div className="table" >
+            <div className = {grid} onMouseLeave = {mouseExit}>
               {(() => {
-                
+                if(estado === 0 || tabela === undefined || tabela.length === 0){
+                    return <div></div>;
+                }
                 //console.log(" Game Table" + props.lines +  " - " - props.columns)
                 for(let i = 0; i < props.lines; i++){
                     for(let j = 0; j < props.columns;j++){
-                        letters.push(<Letter line = {i} col = {j} mouseDown = {mouseDown} onMouseDown = {handleMouseDown} onMouseUp = {handleMouseUp} onMouseHover={handleMouseHover}> 
+                        letters.push(<Letter line = {i} col = {j} mouseDown = {mouseDown} onMouseDown = {handleMouseDown} onMouseUp = {handleMouseUp} 
+                        onMouseHover={handleMouseHover} level = {level} indexColor = {indexColor} estado = {estado}> 
                                          {tabela[i][j]}
                                     </Letter>);
                     }
                 }
+                
                 return letters;
               })()}
               </div>

@@ -10,3 +10,4 @@ export {default as Word} from "./word/word.component"
 export {default as InputWord} from "./inputWord/inputWord.component"
 export {default as Modal} from "./modal/modal.component"
 export {default as PontuacaoLabel} from './labelPontuacao/pontuacao-label.component'
+export {default as ButtonModal} from './buttonModal/button-modal.component'
