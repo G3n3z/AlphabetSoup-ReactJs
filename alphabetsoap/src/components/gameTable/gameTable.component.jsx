@@ -236,7 +236,7 @@ function GameTable(props){
                 //console.log(" Game Table" + props.lines +  " - " - props.columns)
                 for(let i = 0; i < props.lines; i++){
                     for(let j = 0; j < props.columns;j++){
-                        letters.push(<Letter line = {i} col = {j} mouseDown = {mouseDown} onMouseDown = {handleMouseDown} onMouseUp = {handleMouseUp} 
+                        letters.push(<Letter line = {i} col = {j} key ={`${i} + ${j}`} mouseDown = {mouseDown} onMouseDown = {handleMouseDown} onMouseUp = {handleMouseUp} 
                         onMouseHover={handleMouseHover} level = {level} indexColor = {indexColor} estado = {estado}> 
                                          {tabela[i][j]}
                                     </Letter>);

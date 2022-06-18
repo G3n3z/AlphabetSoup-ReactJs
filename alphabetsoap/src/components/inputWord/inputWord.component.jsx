@@ -1,5 +1,5 @@
 
-
+import "./inputWord.css";
 function InputWord (props){
     const {word} = props;
 
@@ -9,9 +9,9 @@ function InputWord (props){
      * @param {*} e evento
      */
     function addWord(e){
-        
-        if(e.key ==="Enter"){
-            props.handleAddWord(e.target.value);    
+       
+        if(e.key ==="Enter" || e === "button"){
+            props.handleAddWord(document.getElementById('inputText').value);    
             document.getElementById('inputText').value = "";         
         }
     }
@@ -30,8 +30,11 @@ function InputWord (props){
                     return output;
                 })()
             }</div>
-            <input id="inputText" onKeyPress = {addWord} type="text"
-            placeholder="Palavra a adicionar:"></input>
+            <div className="input-container">
+                <input id="inputText" onKeyPress = {addWord} type="text"
+                placeholder="Palavra a adicionar:"></input>
+                <div className="input-button" onClick = {() => addWord("button")}>Adicionar</div>
+            </div>
         </div>
     );
 };

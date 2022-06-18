@@ -37,4 +37,5 @@
     background-color:grey;
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px 0px,#347c2c 0 0px 0 inset;
     transform: translateY(2px);
+    cursor: default;
 }

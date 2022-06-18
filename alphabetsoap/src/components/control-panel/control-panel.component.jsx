@@ -3,7 +3,7 @@ import {ButtonLevel, ButtonStart, TimeLabel, PontuacaoLabel} from "../index";
 //import { useState } from "react";
 function ControlPanel(props) {
     
-    const {estado, onStartGame, onStopGame, level, onLevel, time, pontuacao, handleUpdatePont, intervalRef, loseGameForTime} = props;
+    const {estado, onStartGame, onStopGame, level, onLevel, time, pontuacao, handleUpdatePont, intervalRef, loseGameForTime, modalOpen} = props;
     //const [activeLevel, setActiveLevel] = useState(["","",""]);
     //const [levelClicked, setLevelClicked] = useState(0);
     const buttons = [
@@ -42,7 +42,6 @@ function ControlPanel(props) {
         if(level !== 0 && estado === 0)
         { 
            onStartGame();
-
         }
         else{
             onStopGame();
@@ -65,7 +64,7 @@ function ControlPanel(props) {
                 <TimeLabel estado = {estado} time = {time} level = {level} loseGameForTime= {loseGameForTime} intervalRef = {intervalRef}/>
                 <PontuacaoLabel estado = {estado} pontuacao = {pontuacao} handleUpdatePont = {handleUpdatePont}></PontuacaoLabel>
             </div>
-            <ButtonStart play= {play} estado = {estado} levelChoose = {level}></ButtonStart>
+            <ButtonStart play= {play} estado = {estado} modalOpen = {modalOpen} levelChoose = {level} ></ButtonStart>
           </div>
         </section>
       

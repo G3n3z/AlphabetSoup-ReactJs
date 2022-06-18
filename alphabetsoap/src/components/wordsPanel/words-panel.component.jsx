@@ -10,7 +10,7 @@ function WordsPanel(props) {
             {(() => {
                 let wordsShow =[];
                 for (let word of words) {
-                    wordsShow.push(<Word setHandleWordPanel = {setHandleWordPanel} level = {level} indexColor = {indexColor}>
+                    wordsShow.push(<Word key = {word} setHandleWordPanel = {setHandleWordPanel} level = {level} indexColor = {indexColor}>
                                         {word}
                                     </Word>);
                 }

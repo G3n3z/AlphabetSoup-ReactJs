@@ -339,8 +339,7 @@ function GamePanel(props) {
                     </div>)
                     :( <div></div> )
                   }
-                  {/* <Modal isOpen = {open} ganhou = {ganhou} pontuacao = {pontuacao} tempo = {time} level = {level} handleCloseModal = {handleCloseModal}
-                  handleNextGame = {nextGame} handleNewGame = {newGame}/> */}
+                  
     </div>
   );
 }

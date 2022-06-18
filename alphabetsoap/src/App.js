@@ -85,34 +85,6 @@ function App() {
   };
 
 
-
- 
-
-  // (() => {
-  //   if(estado === 0)
-  //     return;
-  //   if(level === 1){
-  //     nLin = nCol = 10;
-  //     grid = "gridprincipiante";
-  //     numberWords = 4;
-  //   }else if(level === 2){
-  //     nLin = nCol = 15;
-  //     grid ="gridmedio";
-  //     numberWords = 6;
-  //   }
-  //   else if(level === 3){
-  //     nLin = nCol = 20;
-  //     grid ="gridavancado";
-  //     numberWords = 8;
-  //   }else{
-  //     return;
-  //   }
-  //   getWords();
-  //   generateTable();
-  //   //pontuacao.current = 0;
-
-  // })();
-
   
  /**
   * Funcao que armazena o handle para a funcao que faz update à pontuacao do PontuacaoLabel
@@ -194,6 +166,7 @@ function App() {
         handleUpdatePont={receiveUpdatePont}
         intervalRef = {intervalRef}
         loseGameForTime = {loseGameForTime}
+        modalOpen={open}
       ></ControlPanel>
       <GamePanel 
         estado={estado}
