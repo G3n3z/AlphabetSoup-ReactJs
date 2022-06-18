@@ -50,6 +50,7 @@ function TimeLabel(props) {
       //chamar perdeu
     }
   }, [timeOut, loseGameForTime, intervalRef, time, estado]);
+  
   return (
     <>
       {estado !== 0 ? 

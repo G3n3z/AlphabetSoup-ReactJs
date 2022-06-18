@@ -140,19 +140,7 @@ function App() {
     setEstado(2);  
   }
 
-  // useEffect(() => {
 
-  //   if(estado === 1){
-  //     if(stateNextGame === true){
-  //       handleStartGame(true); 
-  //       setNextGame(false);
-  //     }
-  //     else{
-  //       handleStartGame();
-  //     }
-  //       handleUpdatePont();
-  //   }
-  // }, [estado, stateNextGame,handleUpdatePont])
   return (
     <div id="container">
       <ControlPanel

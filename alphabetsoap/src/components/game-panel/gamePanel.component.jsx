@@ -48,7 +48,7 @@ function colocaWord(tab, words, i, incX, incY, numLines, numCol) {
     tries = 0;
   while (!isCorrect) {
     if (tries === 10000) {
-      return;
+      return false;
     }
     tries++;
     initX = Math.floor(Math.random() * numLines);
@@ -69,7 +69,7 @@ function colocaWord(tab, words, i, incX, incY, numLines, numCol) {
       ) {
         break;
       }
-      if (tab[posLine][posCol] !== " " && tab[posLine][posCol] !== words[i]) {
+      if (tab[posLine][posCol] !== " " && tab[posLine][posCol] !== words[i][j]) {
         break;
       }
     }
@@ -83,16 +83,6 @@ function colocaWord(tab, words, i, incX, incY, numLines, numCol) {
   return j === words[i].length;
 }
 
-function remove(words, i) {
-  let w =[];
-  for (let j = 0; j < words[i].length; j++){
-    if(j === i){
-      continue;
-    }
-    w.push(words[j]);
-  }
-  words = w;
-}
 
 /**
  * funcao que calcula uma orientacao aleatoria e coloca as palavras dentro do tab
@@ -142,9 +132,14 @@ function fillWords(tab, words, nLin, nCol) {
     }
     
   }
-  for(let i of indices) {
-    remove(words, i);
+  let newWords = [];
+  for(let i = 0; i < words.length; i++) {
+    if(!indices.includes(i)){
+      newWords.push(words[i]);
+    }
   }
+
+  return newWords;
 }
 
 
@@ -233,8 +228,21 @@ function GamePanel(props) {
       .fill(" ")
       .map((row) => new Array(nCol).fill(" "));
     
-    fillWords(tab, words, nLin, nCol);
-
+    words = fillWords(tab, words, nLin, nCol);
+    
+    while(words.length < numberWords){
+      let random = Math.floor(Math.random() * WORDS.length);
+      let w = WORDS[random];
+      if ((level === 1 && w.length > 6) || words.includes(w)) {
+        continue;
+      }
+      words.push(w);
+      //tab = Array(nLin).fill(" ").map((row) => new Array(nCol).fill(" "));
+      if(!colocaWord(tab, words, words.length - 1, Math.round(Math.random()), Math.round(Math.random()), nLin, nCol)){
+        words.pop();
+      }
+    }
+    //console.log(words);
     for (let i = 0; i < nLin; i++) {
       for (let j = 0; j < nCol; j++) {
         if (tab[i][j] === " ") tab[i][j] = randomLetters(); //colocacao das letras aleatorias

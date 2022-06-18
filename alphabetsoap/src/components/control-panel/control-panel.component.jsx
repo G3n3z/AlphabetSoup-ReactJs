@@ -25,7 +25,6 @@ function ControlPanel(props) {
     ];
     const pressed = (id) =>{
 
-   
         if(level === id){
             onLevel(0);
         }else
@@ -55,9 +54,9 @@ function ControlPanel(props) {
             <h3 >Sopa de Letras</h3>
           </div>
           <form className="form">
-            <ButtonLevel classStyle = {buttons[0].class} id={buttons[0].id} text = {buttons[0].text} number = {1} level = {level} estado = {estado} handlePress={pressed} />
+            <ButtonLevel classStyle = {buttons[0].class} id={buttons[0].id} text = {buttons[0].text} number = {1} level = {level} estado = {estado} handlePress={pressed}/>
             <ButtonLevel classStyle = {buttons[1].class} id={buttons[1].id} text = {buttons[1].text} number = {2} level = {level} estado = {estado} handlePress={pressed}/>
-            <ButtonLevel classStyle = {buttons[2].class} id={buttons[2].id} text = {buttons[2].text} number = {3} level = {level} estado = {estado} handlePress={pressed} />
+            <ButtonLevel classStyle = {buttons[2].class} id={buttons[2].id} text = {buttons[2].text} number = {3} level = {level} estado = {estado} handlePress={pressed}/>
           </form>
           <div className="form-metadata">
             <div className="score-timeDiv">
