@@ -52,7 +52,7 @@ function Letter(props) {
             setBackgroundColor({
                 backgroundColor: `rgb(${BACKGROUNDCOLOR[indexColor.current]})`
             });
-            console.log(indexColor.current);
+            //console.log(indexColor.current);
         }
         else{
             setSelectedState("");

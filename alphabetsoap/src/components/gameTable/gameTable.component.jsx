@@ -118,7 +118,6 @@ function GameTable(props){
      * @returns 
      */
     const handleMouseUp = () => {
-        console.log("mouseUp");
         if(ganhou === true || time.current === 0){
             return;
         }
@@ -214,7 +213,7 @@ function GameTable(props){
             o = findOrientation(letterSelected[1], letterSelected[0]);
             if(o === -1){
                 //erro  na orientacao
-                console.log("erro na orientacao");
+                //console.log("erro na orientacao");
             }
             else{ 
                orientacao = o;

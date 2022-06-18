@@ -40,7 +40,7 @@ function App() {
   const handleStopGame = () => {
     
     if (estado !== 0) {
-      console.log("Terminou");
+      //console.log("Terminou");
       setEstado(0);
       setWordAdd([]);
       
@@ -71,7 +71,7 @@ function App() {
    * @returns 
    */
   const handleAddWord = (word) => {
-    console.log(word);
+    //console.log(word);
     let words = [];
     for (let w of wordAdd) {
       words.push(w);

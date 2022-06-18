@@ -33,13 +33,13 @@ function Word(props) {
             setBackgroundColor({
                 color: `rgb(${BACKGROUNDCOLOR[indexColor.current]})`
             });
-            console.log("Word"  + indexColor.current);
+            //console.log("Word"  + indexColor.current);
             
         }
         else{
             setState("");
         }
-        console.log("Fui selecionada " + props.children);
+        //console.log("Fui selecionada " + props.children);
     }
 
     return (

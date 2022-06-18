@@ -2,8 +2,6 @@ import {Word} from '../index'
 function WordsPanel(props) {
     
     const {words, setHandleWordPanel, level, indexColor} = props;
-    
-    
 
     return(
         <div className="words">

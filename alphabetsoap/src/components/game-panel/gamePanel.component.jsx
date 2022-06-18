@@ -69,7 +69,7 @@ function colocaWord(tab, words, i, incX, incY, numLines, numCol) {
       ) {
         break;
       }
-      if (tab[posLine][posCol] !== " ") {
+      if (tab[posLine][posCol] !== " " && tab[posLine][posCol] !== words[i]) {
         break;
       }
     }
@@ -187,9 +187,9 @@ function GamePanel(props) {
 
     rightWords++;
     pontuacao.current = pontuacao.current + (w.length * 5);
-    console.log(pontuacao.current);
+    //console.log(pontuacao.current);
     handleSetPont(pontuacao.current);
-    console.log(rightWords + " - " + wordsChildren.length)
+    //console.log(rightWords + " - " + wordsChildren.length)
     if(rightWords === wordsChildren.length){
         handleWin(); //Assinala que ganhou
     }
@@ -294,34 +294,14 @@ function GamePanel(props) {
   };
 
 
-
-
-
-  // const handleCloseModal = () => {
-  //   setOpenModal(false);
-  // }
-
-  // const nextGame = () => {
-  //   handleSetLevel(level + 1)
-  //   onStopGame();
-  //   onStartGame(true);
-  //   setGanhou(false);
-  //   setOpenModal(false);
-  // };
-  // const newGame = () => {
-  //   onStopGame();
-  //   setGanhou(false);
-  //   setOpenModal(false);
-  // }
-
   /**
    * Invoca a funcao de preparacao do tabuleiro e armazena os valores em estados.
    */
   useEffect(() => {
     if(estado !== 1)
-    return
+      return
     preparaTabuleiro();
-    console.log(tab)
+    //console.log(tab)
     setTabuleiro(tab);
     setWords(words);
     setCGrid(grid);
