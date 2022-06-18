@@ -11,7 +11,11 @@ function InputWord (props){
     function addWord(e){
        
         if(e.key ==="Enter" || e === "button"){
-            props.handleAddWord(document.getElementById('inputText').value);    
+            let a = document.getElementById('inputText').value;
+            if(a.length < 2){
+                return;
+            }
+            props.handleAddWord(a);    
             document.getElementById('inputText').value = "";         
         }
     }
